@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="fe34b7a3-07ef-40e9-9162-f5fe92fe97a1" name="Default Changelist" comment="" />
+    <list default="true" id="fe34b7a3-07ef-40e9-9162-f5fe92fe97a1" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -227,7 +229,7 @@
       <workItem from="1595473390663" duration="5197000" />
       <workItem from="1595550764042" duration="4943000" />
       <workItem from="1595829749522" duration="7063000" />
-      <workItem from="1595896826891" duration="3207000" />
+      <workItem from="1595896826891" duration="3802000" />
     </task>
     <servers />
   </component>
@@ -255,6 +257,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="690" y="267" key="#com.intellij.refactoring.typeMigration.ui.FailedConversionsDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1590138843613" />
+    <state x="560" y="112" key="CommitChangelistDialog2" timestamp="1595903893420">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="560" y="112" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1595903893420" />
     <state x="817" y="366" key="FileChooserDialogImpl" timestamp="1595299271582">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -315,6 +321,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="525" y="190" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1595299378383" />
+    <state x="744" y="311" key="git4idea.merge.GitPullDialog" timestamp="1595904427704">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="744" y="311" key="git4idea.merge.GitPullDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1595904427704" />
     <state x="429" y="234" key="new project wizard" timestamp="1595577682474">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
