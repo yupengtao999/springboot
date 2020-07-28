@@ -1,0 +1,47 @@
+server:
+  address: 127.0.0.1
+  port: 8082
+spring:
+  datasource:
+    username: root
+    password: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/user?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC
+    type: com.alibaba.druid.pool.DruidDataSource
+    validationQuery: select 1 from dual
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+
+  redis:
+    database: 2
+    host: 172.16.6.123
+    port: 6379
+    password: 123456
+#  thymeleaf:
+#    cache: false
+#logging:
+#  config:
+#  level:
+#    root: info
+#  pattern:
+#    console: "%d{yyyy/MM/dd-HH:mm:ss} [%thread] %-5level %logger- %msg%n"
+#    file: "my.log.%d{yyyy-MM-dd}.log"
+#  path: "./logs"
+#  file:
+#    max-history: 30
+#    max-size: 10MB
+mqtt:
+  hostUrl: tcp://127.0.0.1:1883
+  clientId: mqttjs_e8022a4d0b
+  topic: test
+  username: admin
+  password: public
+  timeOut: 3000
+mqtt1:
+  hostUrl: tcp://127.0.0.1:1883
+  clientId: mqttjs_e8022a4d0b
+  topic: test
+  username: admin
+  password: public
+  timeOut: 3000

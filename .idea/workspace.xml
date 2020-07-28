@@ -1,0 +1,331 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="fe34b7a3-07ef-40e9-9162-f5fe92fe97a1" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="HTML File" />
+        <option value="Interface" />
+        <option value="package.json" />
+        <option value="spring-beans.schema" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="localRepository" value="D:\warehouse" />
+        <option name="mavenHome" value="D:/apache-maven-3.3.9" />
+        <option name="userSettingsFile" value="D:\apache-maven-3.3.9\conf\settings.xml" />
+      </MavenGeneralSettings>
+    </option>
+    <option name="importingSettings">
+      <MavenImportingSettings>
+        <option name="importAutomatically" value="true" />
+      </MavenImportingSettings>
+    </option>
+  </component>
+  <component name="ProjectId" id="1ZpWUwE31BpcNQhWsX50uJrfoNx" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="RequestMappingsPanelOrder0" value="0" />
+    <property name="RequestMappingsPanelOrder1" value="1" />
+    <property name="RequestMappingsPanelWidth0" value="75" />
+    <property name="RequestMappingsPanelWidth1" value="75" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="project.structure.last.edited" value="SDKs" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.45737326" />
+    <property name="settings.editor.selected.configurable" value="Errors" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\workspacestudy\springboot\src\main\resources\templates" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\workspacestudy\springboot\src\main\resources" />
+    </key>
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="com.ypt.springboot.bean" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Application.ExecutorTest">
+    <configuration name="Consumer" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.ypt.springboot.WebSocket.Consumer" />
+      <module name="springboot" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.ypt.springboot.WebSocket.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ExecutorTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.ypt.springboot.Config.ExecutorTest" />
+      <module name="springboot" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.ypt.springboot.Config.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Job" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.ypt.springboot.bean.Job" />
+      <module name="springboot" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.ypt.springboot.bean.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ProducerDemo" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.ypt.springboot.WebSocket.ProducerDemo" />
+      <module name="springboot" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.ypt.springboot.WebSocket.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="KafkaTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="springboot" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.ypt.springboot.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.ypt.springboot" />
+      <option name="MAIN_CLASS_NAME" value="com.ypt.springboot.KafkaTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SpringbootApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="springboot" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.ypt.springboot.SpringbootApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="Application.ProducerDemo" />
+      <item itemvalue="Application.Consumer" />
+      <item itemvalue="Application.Job" />
+      <item itemvalue="Application.ExecutorTest" />
+      <item itemvalue="JUnit.KafkaTest" />
+      <item itemvalue="Spring Boot.SpringbootApplication" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.ExecutorTest" />
+        <item itemvalue="Application.Job" />
+        <item itemvalue="Application.Consumer" />
+        <item itemvalue="Application.ProducerDemo" />
+        <item itemvalue="JUnit.KafkaTest" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="ServiceViewManager">
+    <option name="viewStates">
+      <list>
+        <serviceView>
+          <treeState>
+            <expand />
+            <select />
+          </treeState>
+        </serviceView>
+      </list>
+    </option>
+  </component>
+  <component name="SpringBootOptions">
+    <option name="showAdditionalConfigNotification" value="false" />
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="fe34b7a3-07ef-40e9-9162-f5fe92fe97a1" name="Default Changelist" comment="" />
+      <created>1585536534623</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1585536534623</updated>
+      <workItem from="1585536537764" duration="7466000" />
+      <workItem from="1585816826677" duration="31000" />
+      <workItem from="1587366358840" duration="667000" />
+      <workItem from="1587371742913" duration="3373000" />
+      <workItem from="1587429205279" duration="9072000" />
+      <workItem from="1587517207164" duration="6187000" />
+      <workItem from="1587546004491" duration="648000" />
+      <workItem from="1587601891003" duration="19664000" />
+      <workItem from="1587689362549" duration="18370000" />
+      <workItem from="1587861959185" duration="11057000" />
+      <workItem from="1587947681313" duration="2890000" />
+      <workItem from="1588040500168" duration="992000" />
+      <workItem from="1588121541598" duration="3955000" />
+      <workItem from="1588728548426" duration="1394000" />
+      <workItem from="1589853206631" duration="6925000" />
+      <workItem from="1590114543383" duration="8153000" />
+      <workItem from="1592371709227" duration="360000" />
+      <workItem from="1592372129143" duration="4604000" />
+      <workItem from="1592463299372" duration="2884000" />
+      <workItem from="1592898289670" duration="4695000" />
+      <workItem from="1593391789658" duration="7397000" />
+      <workItem from="1593483521695" duration="2365000" />
+      <workItem from="1593569177289" duration="8944000" />
+      <workItem from="1593673794537" duration="630000" />
+      <workItem from="1593760038011" duration="638000" />
+      <workItem from="1594023113595" duration="722000" />
+      <workItem from="1594086320186" duration="14819000" />
+      <workItem from="1594168425302" duration="8927000" />
+      <workItem from="1594255556952" duration="7079000" />
+      <workItem from="1594605261063" duration="6841000" />
+      <workItem from="1594687040032" duration="18814000" />
+      <workItem from="1594773237416" duration="9362000" />
+      <workItem from="1594859520657" duration="7656000" />
+      <workItem from="1594947332536" duration="8736000" />
+      <workItem from="1595206459770" duration="1991000" />
+      <workItem from="1595222011594" duration="7311000" />
+      <workItem from="1595293835099" duration="9582000" />
+      <workItem from="1595378092509" duration="11126000" />
+      <workItem from="1595473390663" duration="5197000" />
+      <workItem from="1595550764042" duration="4943000" />
+      <workItem from="1595829749522" duration="7063000" />
+      <workItem from="1595896826891" duration="3207000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="580" y="206" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1595578298253">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="580" y="206" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1595578298253" />
+    <state x="765" y="204" key="#com.intellij.ide.util.MemberChooser" timestamp="1595839789998">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="765" y="204" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1595839789998" />
+    <state x="284" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1595222213972">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="284" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1595222213972" />
+    <state x="690" y="267" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1594976887851">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="690" y="267" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1594976887851" />
+    <state x="690" y="267" key="#com.intellij.refactoring.typeMigration.ui.FailedConversionsDialog" timestamp="1590138843613">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="690" y="267" key="#com.intellij.refactoring.typeMigration.ui.FailedConversionsDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1590138843613" />
+    <state x="817" y="366" key="FileChooserDialogImpl" timestamp="1595299271582">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="817" y="366" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1595299271582" />
+    <state width="1877" height="233" key="GridCell.Tab.0.bottom" timestamp="1595897248784">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="233" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1595897248784" />
+    <state width="1877" height="233" key="GridCell.Tab.0.center" timestamp="1595897248784">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="233" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1595897248784" />
+    <state width="1877" height="233" key="GridCell.Tab.0.left" timestamp="1595897248783">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="233" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1595897248783" />
+    <state width="1877" height="233" key="GridCell.Tab.0.right" timestamp="1595897248784">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="233" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1595897248784" />
+    <state width="1877" height="277" key="GridCell.Tab.1.bottom" timestamp="1595237572604">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="277" key="GridCell.Tab.1.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1595237572604" />
+    <state width="1877" height="277" key="GridCell.Tab.1.center" timestamp="1595237572604">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="277" key="GridCell.Tab.1.center/0.0.1920.1040@0.0.1920.1040" timestamp="1595237572604" />
+    <state width="1877" height="277" key="GridCell.Tab.1.left" timestamp="1595237572604">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="277" key="GridCell.Tab.1.left/0.0.1920.1040@0.0.1920.1040" timestamp="1595237572604" />
+    <state width="1877" height="277" key="GridCell.Tab.1.right" timestamp="1595237572604">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="277" key="GridCell.Tab.1.right/0.0.1920.1040@0.0.1920.1040" timestamp="1595237572604" />
+    <state width="1877" height="318" key="GridCell.Tab.2.bottom" timestamp="1589880715282">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="318" key="GridCell.Tab.2.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1589880715282" />
+    <state width="1877" height="318" key="GridCell.Tab.2.center" timestamp="1589880715282">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="318" key="GridCell.Tab.2.center/0.0.1920.1040@0.0.1920.1040" timestamp="1589880715282" />
+    <state width="1877" height="318" key="GridCell.Tab.2.left" timestamp="1589880715282">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="318" key="GridCell.Tab.2.left/0.0.1920.1040@0.0.1920.1040" timestamp="1589880715282" />
+    <state width="1877" height="318" key="GridCell.Tab.2.right" timestamp="1589880715282">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="318" key="GridCell.Tab.2.right/0.0.1920.1040@0.0.1920.1040" timestamp="1589880715282" />
+    <state x="490" y="175" key="Maven.ArtifactSearchDialog" timestamp="1592898910898">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="490" y="175" key="Maven.ArtifactSearchDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1592898910898" />
+    <state x="525" y="190" key="SettingsEditor" timestamp="1595299378383">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="525" y="190" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1595299378383" />
+    <state x="429" y="234" key="new project wizard" timestamp="1595577682474">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="429" y="234" key="new project wizard/0.0.1920.1040@0.0.1920.1040" timestamp="1595577682474" />
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1594192333206">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1594192333206" />
+    <state x="613" y="203" key="spring file set editor" timestamp="1595830235559">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="613" y="203" key="spring file set editor/0.0.1920.1040@0.0.1920.1040" timestamp="1595830235559" />
+  </component>
+</project>

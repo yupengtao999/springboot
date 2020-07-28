@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="http://ajax.aspnetcdn.com/ajax/jquery/jquery-1.12.4.min.js"></script>
+    <script>
+        $(function () {
+            //查询所有
+            var select_all = $("#select_btn");
+            select_all.click(function () {
+                $.ajax({
+                        url: "/user",
+                        type: "get",
+                        success: function (result) {
+                            var div = $("#div01");
+                            for (var i = 0; i < result.length; i++) {
+                                div.append("<p> 姓名:" + result[i].username + "</p>");
+                                div.append("<p>生日：" + result[i].birthday + "</p>");
+                                div.append("<p>性别：" + result[i].sex + "</p>");
+                                div.append("<p>地址：" + result[i].address + "</p>");
+                                div.append("<button><a href='update.html?id=" + result[i].id + "'>修改</a></button>");
+                                div.append("<button href='#' οnclick='deleteById(" + result[i].id + ")'>删除</button><hr>");
+                            }
+                        }
+                    }
+                )
+            });
+            //查询一个
+            var select_id_btn = $("#select_id_btn");
+            select_id_btn.click(function () {
+                var select_id_btn_text = $("#select_id_btn_text");
+                var url = "user/" + select_id_btn_text.val();
+                $.ajax({
+                    url: url,
+                    success: function (result) {
+                        alert(result.username);
+                    }
+                });
+            });
+            //新增一个
+            var sub_btn = $("#sub_btn");
+            sub_btn.click(function () {
+                var username = $(".username").val();
+                var birthday = $(".birthday").val();
+                var sex = $(".sex").val();
+                var address = $(".address").val();
+                $.ajax({
+                    url: "/user",
+                    type: "post",
+                    data: {username: username, birthday: birthday, sex: sex, address: address},
+                    success: function (result) {
+                        if (result == "success") {
+                            alert("添加成功");
+                            location.href = "index.html";
+                        } else {
+                            alert("添加失败");
+                        }
+                    }
+                });
+            });
+        });
+        //删除一个
+        function deleteById(id) {
+            var url = "/user/" + id;
+            $.ajax({
+                url: url,
+                type: "delete",
+                success: function (result) {
+                    if (result == "success") {
+                        alert("删除成功");
+                        location.href = "index.html";
+                    } else {
+                        alert("删除失败，服务器正在维护")
+                    }
+                }
+            });
+        }
+    </script>
+    <title>index</title>
+</head>
+<body>
+<h1>这是首页！</h1>
+<button id="select_btn">点击查询所有</button>
+<div id="div01"></div>
+<h3>请输入查询用户的id</h3>
+<input type="text" id="select_id_btn_text">
+<button id="select_id_btn">查询</button>
+<h3>新增用户</h3>
+<form>
+    姓名：<input type="text" class="username" name="username"/><br/>
+    生日：<input type="date" class="birthday" name="birthday"/><br/>
+    性别：<input type="radio" class="sex" name="sex" value="男"/>男
+    <input type="radio" class="sex" name="sex" value="女"/>女<br/>
+    地址：<input type="text" class="address" name="address"/><br/>
+    <input id="sub_btn" type="button" value="提交">
+</form>
+</body>
+</html>

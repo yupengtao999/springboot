@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="http://ajax.aspnetcdn.com/ajax/jquery/jquery-1.12.4.min.js"></script>
+    <script>
+        $(function () {
+            var id = getUrlParam("id");
+            var url = "/user/"+id;
+            //先进行数据回显
+            var username = $(".username");
+            var birthday = $(".birthday");
+            var sex = $(".sex");
+            var address = $(".address");
+            $.ajax({
+                url:url,
+                type:"get",
+                success:function (result) {
+                    username.attr("value",result.username);
+                    birthday.attr("value",result.birthday.substring(0,10));
+                    //checked
+                    if(result.sex == "男"){
+                        sex.eq(0).attr("checked",true);
+                    }else {
+                        sex.eq(1).attr("checked",true);
+                    }
+                    address.attr("value",result.address);
+                }
+            });
+            var update_btn = $("#update_btn");
+            update_btn.click(function () {
+                $.ajax({
+                    url:"/user/",
+                    type:"put",
+                    data:{id:id,username:username.val(),birthday:birthday.val(),sex:sex.val(),address:address.val()},
+                    success:function (result) {
+                        if(result=="success"){
+                            alert("修改成功");
+                            location.href="index.html";
+                        }else{
+                            alert("修改失败");
+                        }
+                    }
+                });
+            })
+        });
+        function getUrlParam(name) {
+            //获取地址栏的参数
+            var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+            var r = window.location.search.substr(1).match(reg);
+            if (r != null){
+                return r[2];
+            }else {
+                return null;
+            }
+        }
+    </script>
+</head>
+<body>
+<h1>这是update页面</h1>
+<form>
+    姓名：<input type="text" class="username" name="username"/><br/>
+    生日：<input type="date" class="birthday" name="birthday"/><br/>
+    性别：<input type="radio" class="sex" name="sex" value="男"/>男
+    <input type="radio" class="sex" name="sex" value="女"/>女<br/>
+    地址：<input type="text" class="address" name="address"/><br/>
+    <input id="update_btn" type="button" value="修改">
+</form>
+</body>
+</html>
