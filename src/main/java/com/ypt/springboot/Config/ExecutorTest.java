@@ -2,7 +2,7 @@ package com.ypt.springboot.Config;
 
 import java.util.concurrent.*;
 
-public class ExecutorTest implements Callable {
+public class ExecutorTest implements Callable,ThreadFactory {
     @Override
     public Object call() throws Exception {
         String a = "123";
@@ -28,6 +28,12 @@ public class ExecutorTest implements Callable {
 //        Future future = tpe.submit(new ExecutorTest() {
 //        });
         futureTask.run();
+        Thread thread = new ExecutorTest().newThread(new Runnable() {
+            @Override
+            public void run() {
+
+            }
+        });
         try {
             System.out.println(futureTask.get());
         } catch (Exception e) {
@@ -35,5 +41,10 @@ public class ExecutorTest implements Callable {
         } finally {
             tpe.shutdown();
         }
+    }
+
+    @Override
+    public Thread newThread(Runnable r) {
+        return null;
     }
 }

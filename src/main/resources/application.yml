@@ -16,3 +16,5 @@ spring:
     password: 123456
 server:
   port: 8081
+ftp:
+  host: 172.16.6.70

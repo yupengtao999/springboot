@@ -15,7 +15,7 @@ spring:
 
   redis:
     database: 2
-    host: 172.16.6.123
+    host: 172.16.6.153
     port: 6379
     password: 123456
 #  thymeleaf:
@@ -45,3 +45,5 @@ mqtt1:
   username: admin
   password: public
   timeOut: 3000
+ftp:
+  host: 172.16.6.70
