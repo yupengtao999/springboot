@@ -1,5 +1,6 @@
 package com.ypt.springboot.ftpTest;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class FileTree {
@@ -8,6 +9,7 @@ public class FileTree {
     private Long time;
     private Integer count;
     private String relTime;
+    private Integer type;//0是文件，1是文件夹
 
     @Override
     public String toString() {
@@ -17,8 +19,17 @@ public class FileTree {
                 ", time=" + time +
                 ", count=" + count +
                 ", relTime='" + relTime + '\'' +
+                ", type=" + type +
                 ", trees=" + trees +
                 '}';
+    }
+
+    public Integer getType() {
+        return type;
+    }
+
+    public void setType(Integer type) {
+        this.type = type;
     }
 
     public Integer getCount() {
@@ -84,4 +95,5 @@ public class FileTree {
         this.fileName = fileName;
         this.trees = trees;
     }
+
 }
