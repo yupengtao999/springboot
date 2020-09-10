@@ -300,7 +300,6 @@ public class Test {
         for (FTPFile file : files) {
             names.add(file.getName());
         }
-        names.add(name);
         for (int i =0;i<100;i++){
             if (!names.contains(newName)){
                 ftpClient.makeDirectory(path + "\\" + newName);
