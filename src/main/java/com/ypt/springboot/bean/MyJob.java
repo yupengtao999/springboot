@@ -1,8 +1,6 @@
 package com.ypt.springboot.bean;
 
 import org.apache.xbean.spring.context.ClassPathXmlApplicationContext;
-import org.quartz.Job;
-import org.quartz.JobDataMap;
 import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
 import org.springframework.context.ApplicationContext;

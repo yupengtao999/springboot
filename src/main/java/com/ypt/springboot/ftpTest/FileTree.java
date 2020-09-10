@@ -1,6 +1,5 @@
 package com.ypt.springboot.ftpTest;
 
-import java.io.IOException;
 import java.util.ArrayList;
 
 public class FileTree {

@@ -152,8 +152,10 @@ public class Test {
         return isTrue;
     }
 
-    public boolean downloadFile(String remoteFileName, String localDirs, String remotePath) {
+    public boolean downloadFile(String remoteFileName, String localDirs, String remotePath) throws IOException {
         initFtpClient();
+        ftpClient.setFileType(FTP.BINARY_FILE_TYPE);
+        ftpClient.enterLocalPassiveMode();
         String strFilePath = localDirs + "\\" + remoteFileName;
         BufferedOutputStream outStream = null;
         boolean success = false;
@@ -279,14 +281,37 @@ public class Test {
         return true;
     }
 
-    public void addFile(String path) throws IOException {
+    public boolean addDir(String path, String fileName) throws IOException {
         initFtpClient();
         FTPFile[] files = ftpClient.listFiles(path);
-        if (files.length >= 100) {
-            System.out.println("false");
+        String name;
+        int num = 1;
+        String newName;
+        if (fileName.isEmpty()) {
+            name = "新建文件夹";
         } else {
-            ftpClient.makeDirectory(path);
+            name = fileName;
         }
+        newName = name;
+        if (files.length >= 100) {
+            return false;
+        }
+        List<String> names = new ArrayList<>();
+        for (FTPFile file : files) {
+            names.add(file.getName());
+        }
+        names.add(name);
+        for (int i =0;i<100;i++){
+            if (!names.contains(newName)){
+                ftpClient.makeDirectory(path + "\\" + newName);
+                return true;
+            }else if (names.contains(newName +" (" + num + ")")){
+                num++;
+            }
+        }
+        name = newName + " (" + num + ")";
+        ftpClient.makeDirectory(path + "\\" + name);
+        return true;
     }
 
     public void updateFileName(String path, String oldName, String newName) throws IOException {
@@ -315,25 +340,6 @@ public class Test {
         }
         long end = System.currentTimeMillis();
         System.out.println(end - start);
-//        t.addFile("\\");
-
-
-//        List<JSONObject> objectList = new ArrayList<>();
-//        for(FTPFile f:files){
-//            if (f.isDirectory()){
-//                size = "-";
-//            }else {
-//                size = f.getSize() +"B";
-//            }
-//            JSONObject jsonObject = new JSONObject();
-//            jsonObject.put("name",f.getName());
-//            jsonObject.put("time",dateFormat.format(f.getTimestamp().getTime()));
-//            jsonObject.put("size",size);
-//            objectList.add(jsonObject);
-//            System.out.println(jsonObject.toJSONString());
-//        }
-//        System.out.println(objectList.toString());
-//        System.out.println("总数:"+files.length);
 
 //        t.removeDirectoryALLFile("\\1\\2");
 //        t.downFile("1.txt","3.txt","d:");
@@ -346,7 +352,8 @@ public class Test {
 //        }
 //t.fileCopy("2.txt","\\1","\\1\\111");
 //        t.updateFileName("\\1","2.txt","4.txt");
-        t.dirCopy("\\1\\2", "\\1\\111");
+//        t.dirCopy("\\1\\2", "\\1\\111");
 //        t.moveFile("\\1\\2", "\\1\\111");
+        t.addDir("\\1", "");
     }
 }
