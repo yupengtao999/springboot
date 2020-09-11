@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>文件上传</title>
+</head>
+<body>
+<form enctype="multipart/form-data" method="post" action="/redis/uploadFile">
+    文件：<input type="file" name="fileName"/></br></br>
+    <p>文件1：<input type="file" name="fileName"/></p>
+    <p>文件2：<input type="file" name="fileName"/></p>
+    备注：<input type="text" name="remark"/>
+    <input type="submit" value="上传"/>
+</form>
+</body>
+</html>
