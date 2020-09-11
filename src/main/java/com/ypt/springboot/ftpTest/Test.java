@@ -1,15 +1,15 @@
 package com.ypt.springboot.ftpTest;
 
 import org.apache.commons.net.ftp.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.*;
-import java.net.MalformedURLException;
 import java.nio.charset.StandardCharsets;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.CyclicBarrier;
 
 public class Test {
     //ftp服务器地址
@@ -22,7 +22,8 @@ public class Test {
     public String password = "123456";
 
     public FTPClient ftpClient = null;
-    CyclicBarrier cyclicBarrier;
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(Test.class);
 
     /**
      * 初始化ftp服务器
@@ -34,16 +35,13 @@ public class Test {
         conf.setServerLanguageCode("zh");
 
         try {
-//            System.out.println("connecting...ftp服务器:" + this.hostname + ":" + this.port);
             ftpClient.connect(hostname, port); //连接ftp服务器
             ftpClient.login(username, password); //登录ftp服务器
             int replyCode = ftpClient.getReplyCode(); //是否成功登录服务器
             if (!FTPReply.isPositiveCompletion(replyCode)) {
-//                System.out.println("connect failed...ftp服务器:" + this.hostname + ":" + this.port);
+                LOGGER.info("connect failed...ftp服务器:{} :{}", this.hostname,this.port);
             }
-//            System.out.println("connect successful...ftp服务器:" + this.hostname + ":" + this.port);
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
+            LOGGER.info("connect successful...ftp服务器:{} :{}", this.hostname,this.port);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -119,9 +117,6 @@ public class Test {
                 for (FTPFile file : files) {
                     if (file.isDirectory()) {
                         removeDirectoryALLFile(pathName + "\\" + file.getName());
-                        // 切换到父目录，不然删不掉文件夹
-//                        ftpClient.changeWorkingDirectory(pathName.substring(0, pathName.lastIndexOf("\\")));
-//                        ftpClient.removeDirectory(pathName);
                     } else {
                         if (!ftpClient.deleteFile(pathName + "\\" + file.getName())) {
                             return "删除文件" + pathName + "\\" + file.getName() + "失败!";
@@ -133,7 +128,7 @@ public class Test {
             ftpClient.changeWorkingDirectory(pathName.substring(0, pathName.lastIndexOf("\\")));
             ftpClient.removeDirectory(pathName);
         } catch (IOException e) {
-            System.out.println("删除文件夹" + pathName + "失败：" + e);
+            LOGGER.info("删除文件夹失败",e);
             e.printStackTrace();
             return "删除文件夹" + pathName + "失败：" + e;
         }
@@ -162,15 +157,9 @@ public class Test {
         try {
             ftpClient.changeWorkingDirectory(remotePath);
             outStream = new BufferedOutputStream(new FileOutputStream(strFilePath));
-            System.out.println(remoteFileName + "开始下载....");
             success = ftpClient.retrieveFile(remoteFileName, outStream);
-            if (success) {
-                System.out.println(remoteFileName + "成功下载到" + strFilePath);
-                return true;
-            }
         } catch (Exception e) {
             e.printStackTrace();
-            System.out.println(remoteFileName + "下载失败");
         } finally {
             if (null != outStream) {
                 try {
@@ -180,9 +169,6 @@ public class Test {
                     e.printStackTrace();
                 }
             }
-        }
-        if (!success) {
-            System.out.println(remoteFileName + "下载失败!!!");
         }
         return success;
     }
@@ -203,18 +189,13 @@ public class Test {
                 }
             }
         } catch (IOException e) {
-            e.printStackTrace();
-            System.out.println("下载文件夹失败");
+            LOGGER.info("下载文件夹失败",e);
             return false;
         }
         return true;
     }
 
-    public boolean copyFile(String oldPath, String newPath) throws IOException {
-        return false;
-    }
-
-    public boolean dirCopy(String oldPath, String newPath) throws IOException {
+    public boolean dirCopy(String oldPath, String newPath) {
         try {
             initFtpClient();
             FTPFile[] files = ftpClient.listFiles(newPath);
@@ -234,8 +215,7 @@ public class Test {
                 }
             }
         } catch (IOException e) {
-            e.printStackTrace();
-            System.out.println("下载文件夹失败");
+            LOGGER.info("复制文件夹失败",e);
             return false;
         }
         return true;
@@ -268,7 +248,8 @@ public class Test {
         try {
             for (MultipartFile file : files) {
                 is = file.getInputStream();
-                ftpClient.storeFile(pathname, is);
+                String fileName = file.getOriginalFilename();
+                ftpClient.storeFile(pathname+"\\"+fileName, is);
                 is.close();
             }
         } catch (Exception e) {
@@ -289,28 +270,32 @@ public class Test {
         }
         String name;
         int num = 1;
-        String newName;
-        if (fileName.isEmpty()) {
+        if (fileName.isEmpty() || fileName.trim().equals("")) {
             name = "新建文件夹";
         } else {
             name = fileName;
         }
-        newName = name;
         List<String> names = new ArrayList<>();
         for (FTPFile file : files) {
             names.add(file.getName());
         }
-        for (int i =0;i<100;i++){
-            if (!names.contains(newName)){
-                ftpClient.makeDirectory(path + "\\" + newName);
-                return true;
-            }else if (names.contains(newName +" (" + num + ")")){
-                num++;
+        try {
+            while (true) {
+                if (!names.contains(name)) {
+                    ftpClient.makeDirectory(path + "\\" + name);
+                    return true;
+                } else if (names.contains(name + " (" + num + ")")) {
+                    num++;
+                } else {
+                    name = name + " (" + num + ")";
+                    ftpClient.makeDirectory(path + "\\" + name);
+                    return true;
+                }
             }
+        }catch (Exception e){
+            e.printStackTrace();
+            return false;
         }
-        name = newName + " (" + num + ")";
-        ftpClient.makeDirectory(path + "\\" + name);
-        return true;
     }
 
     public void updateFileName(String path, String oldName, String newName) throws IOException {
@@ -321,14 +306,14 @@ public class Test {
         ftpClient.disconnect();
     }
 
-    public void moveFile(String oldPath, String newPath) throws IOException, InterruptedException {
+    public void moveFile(String oldPath, String newPath) throws IOException {
         if (dirCopy(oldPath, newPath)) {
             removeDirectoryALLFile(oldPath);
         }
     }
 
 
-    public static void main(String[] args) throws IOException, InterruptedException {
+    public static void main(String[] args) throws IOException {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         Test t = new Test();
         long start = System.currentTimeMillis();
@@ -353,6 +338,6 @@ public class Test {
 //        t.updateFileName("\\1","2.txt","4.txt");
 //        t.dirCopy("\\1\\2", "\\1\\111");
 //        t.moveFile("\\1\\2", "\\1\\111");
-        t.addDir("\\1", "");
+        t.addDir("\\1", "   ");
     }
 }

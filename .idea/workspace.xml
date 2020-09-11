@@ -3,16 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="fe34b7a3-07ef-40e9-9162-f5fe92fe97a1" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ypt/springboot/Controller/RedisController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ypt/springboot/Controller/RedisController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/ypt/springboot/ftpTest/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ypt/springboot/ftpTest/Test.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application-dev.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application-dev.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/ypt/springboot/Controller/PlatformMqtt.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/ypt/springboot/Controller/PlatformMqtt.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/application-dev.yml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application-dev.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/ypt/springboot/Controller/RedisController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/ypt/springboot/Controller/RedisController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/ypt/springboot/Controller/UserController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/ypt/springboot/Controller/UserController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/ypt/springboot/bean/Mail.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/ypt/springboot/bean/Mail.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/ypt/springboot/bean/MyJob.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/ypt/springboot/bean/MyJob.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/ypt/springboot/ftpTest/FileTree.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/ypt/springboot/ftpTest/FileTree.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/ypt/springboot/ftpTest/Test.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/ypt/springboot/ftpTest/Test.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -266,7 +260,7 @@
       <workItem from="1599611493407" duration="15844000" />
       <workItem from="1599697830077" duration="3830000" />
       <workItem from="1599703258164" duration="3823000" />
-      <workItem from="1599784276563" duration="6889000" />
+      <workItem from="1599784276563" duration="11898000" />
     </task>
     <task id="LOCAL-00001" summary="1">
       <created>1595904574549</created>
@@ -303,23 +297,42 @@
       <option name="project" value="LOCAL" />
       <updated>1599701314962</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="上传文件接口">
+      <created>1599807182922</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1599807182922</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="1" />
     <MESSAGE value="ftp功能" />
     <MESSAGE value="去除多余import" />
-    <option name="LAST_COMMIT_MESSAGE" value="去除多余import" />
+    <MESSAGE value="上传文件接口" />
+    <option name="LAST_COMMIT_MESSAGE" value="上传文件接口" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="552" y="179" key="#Notifications" timestamp="1599007925580">
+    <state x="552" y="179" key="#Notifications" timestamp="1599807225650">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="552" y="179" key="#Notifications/0.0.1920.1040@0.0.1920.1040" timestamp="1599007925580" />
+    <state x="552" y="179" key="#Notifications/0.0.1920.1040@0.0.1920.1040" timestamp="1599807225650" />
     <state x="580" y="206" width="1160" height="689" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1599702631689">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -340,46 +353,46 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="703" y="403" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.1920.1040@0.0.1920.1040" timestamp="1596178797761" />
-    <state x="560" y="112" key="CommitChangelistDialog2" timestamp="1599701313359">
+    <state x="560" y="112" key="CommitChangelistDialog2" timestamp="1599807180269">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="560" y="112" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1599701313359" />
+    <state x="560" y="112" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1599807180269" />
     <state x="817" y="366" key="FileChooserDialogImpl" timestamp="1599103186489">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="817" y="366" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1599103186489" />
-    <state width="1877" height="277" key="GridCell.Tab.0.bottom" timestamp="1599804939955">
+    <state width="938" height="277" key="GridCell.Tab.0.bottom" timestamp="1599811315436">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="277" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1599804939955" />
-    <state width="1877" height="277" key="GridCell.Tab.0.center" timestamp="1599804939955">
+    <state width="938" height="277" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1599811315436" />
+    <state width="938" height="277" key="GridCell.Tab.0.center" timestamp="1599811315436">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="277" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1599804939955" />
-    <state width="1877" height="277" key="GridCell.Tab.0.left" timestamp="1599804939955">
+    <state width="938" height="277" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1599811315436" />
+    <state width="938" height="277" key="GridCell.Tab.0.left" timestamp="1599811315436">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="277" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1599804939955" />
-    <state width="1877" height="277" key="GridCell.Tab.0.right" timestamp="1599804939955">
+    <state width="938" height="277" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1599811315436" />
+    <state width="938" height="277" key="GridCell.Tab.0.right" timestamp="1599811315436">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="277" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1599804939955" />
-    <state width="1877" height="277" key="GridCell.Tab.1.bottom" timestamp="1599804939955">
+    <state width="938" height="277" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1599811315436" />
+    <state width="1877" height="277" key="GridCell.Tab.1.bottom" timestamp="1599808893919">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="277" key="GridCell.Tab.1.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1599804939955" />
-    <state width="1877" height="277" key="GridCell.Tab.1.center" timestamp="1599804939955">
+    <state width="1877" height="277" key="GridCell.Tab.1.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1599808893919" />
+    <state width="1877" height="277" key="GridCell.Tab.1.center" timestamp="1599808893919">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="277" key="GridCell.Tab.1.center/0.0.1920.1040@0.0.1920.1040" timestamp="1599804939955" />
-    <state width="1877" height="277" key="GridCell.Tab.1.left" timestamp="1599804939955">
+    <state width="1877" height="277" key="GridCell.Tab.1.center/0.0.1920.1040@0.0.1920.1040" timestamp="1599808893919" />
+    <state width="1877" height="277" key="GridCell.Tab.1.left" timestamp="1599808893919">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="277" key="GridCell.Tab.1.left/0.0.1920.1040@0.0.1920.1040" timestamp="1599804939955" />
-    <state width="1877" height="277" key="GridCell.Tab.1.right" timestamp="1599804939955">
+    <state width="1877" height="277" key="GridCell.Tab.1.left/0.0.1920.1040@0.0.1920.1040" timestamp="1599808893919" />
+    <state width="1877" height="277" key="GridCell.Tab.1.right" timestamp="1599808893919">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="277" key="GridCell.Tab.1.right/0.0.1920.1040@0.0.1920.1040" timestamp="1599804939955" />
+    <state width="1877" height="277" key="GridCell.Tab.1.right/0.0.1920.1040@0.0.1920.1040" timestamp="1599808893919" />
     <state width="1877" height="277" key="GridCell.Tab.2.bottom" timestamp="1599125219562">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -408,10 +421,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="645" y="180" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1599788175680" />
-    <state x="552" y="253" key="Vcs.Push.Dialog.v2" timestamp="1599701341603">
+    <state x="552" y="253" key="Vcs.Push.Dialog.v2" timestamp="1599807202165">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="552" y="253" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1599701341603" />
+    <state x="552" y="253" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1599807202165" />
     <state x="92" y="92" width="1736" height="856" key="com.intellij.history.integration.ui.views.DirectoryHistoryDialog" timestamp="1599701288616">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -456,21 +469,6 @@
           <url>file://$PROJECT_DIR$/src/main/java/com/ypt/springboot/Controller/RedisController.java</url>
           <line>127</line>
           <option name="timeStamp" value="8" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/ypt/springboot/ftpTest/Test.java</url>
-          <line>195</line>
-          <option name="timeStamp" value="26" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/ypt/springboot/ftpTest/Test.java</url>
-          <line>160</line>
-          <option name="timeStamp" value="27" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/ypt/springboot/ftpTest/Test.java</url>
-          <line>290</line>
-          <option name="timeStamp" value="58" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
