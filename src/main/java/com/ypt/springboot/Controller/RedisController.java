@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -152,6 +153,22 @@ public class RedisController {
         }
         t.ftpClient.disconnect();
         return "true";
+    }
+
+    @PostMapping(value = "/uploadFile")
+    public JSONObject uploadFile(@RequestParam MultipartFile[] files, @RequestParam String pathname){
+        JSONObject jsonString = new JSONObject();
+        Test t = new Test();
+        t.initFtpClient();
+        try {
+            t.uploadFile(files,pathname);
+        } catch (IOException e) {
+            e.printStackTrace();
+            jsonString.put("msg",false);
+            return jsonString;
+        }
+        jsonString.put("msg",true);
+        return jsonString;
     }
 
     //用Element方式

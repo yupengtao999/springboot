@@ -260,7 +260,6 @@ public class Test {
 
 
     public boolean uploadFile(MultipartFile[] files, String pathname) throws IOException {
-        initFtpClient();
         InputStream is;
         FTPFile[] ftpFiles = ftpClient.listFiles(pathname);
         if (ftpFiles.length + files.length >= 100) {
@@ -277,6 +276,7 @@ public class Test {
             return false;
         } finally {
             ftpClient.logout();
+            ftpClient.disconnect();
         }
         return true;
     }
@@ -284,6 +284,9 @@ public class Test {
     public boolean addDir(String path, String fileName) throws IOException {
         initFtpClient();
         FTPFile[] files = ftpClient.listFiles(path);
+        if (files.length >= 100) {
+            return false;
+        }
         String name;
         int num = 1;
         String newName;
@@ -293,9 +296,6 @@ public class Test {
             name = fileName;
         }
         newName = name;
-        if (files.length >= 100) {
-            return false;
-        }
         List<String> names = new ArrayList<>();
         for (FTPFile file : files) {
             names.add(file.getName());
