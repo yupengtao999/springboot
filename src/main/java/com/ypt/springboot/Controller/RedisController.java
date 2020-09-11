@@ -156,10 +156,11 @@ public class RedisController {
     }
 
     @PostMapping(value = "/uploadFile")
-    public JSONObject uploadFile(@RequestParam MultipartFile[] files, @RequestParam String pathname){
+    public JSONObject uploadFile(@RequestParam("fileName") MultipartFile[] files){
         JSONObject jsonString = new JSONObject();
         Test t = new Test();
         t.initFtpClient();
+        String pathname = "\\1\\111";
         try {
             t.uploadFile(files,pathname);
         } catch (IOException e) {
