@@ -1,8 +1,11 @@
 package com.ypt.springboot.ftpTest;
 
+import com.ypt.springboot.Config.JsonResult;
 import org.apache.commons.net.ftp.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.*;
@@ -10,7 +13,10 @@ import java.nio.charset.StandardCharsets;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
+@Component
 public class Test {
     //ftp服务器地址
     public String hostname = "172.16.6.44";
@@ -39,9 +45,11 @@ public class Test {
             ftpClient.login(username, password); //登录ftp服务器
             int replyCode = ftpClient.getReplyCode(); //是否成功登录服务器
             if (!FTPReply.isPositiveCompletion(replyCode)) {
-                LOGGER.info("connect failed...ftp服务器:{} :{}", this.hostname,this.port);
+                LOGGER.info("connect failed...ftp服务器:{} :{}", this.hostname, this.port);
             }
-            LOGGER.info("connect successful...ftp服务器:{} :{}", this.hostname,this.port);
+            LOGGER.info("connect successful...ftp服务器:{} :{}", this.hostname, this.port);
+            ftpClient.setFileType(FTP.BINARY_FILE_TYPE);
+            ftpClient.enterLocalPassiveMode();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -49,7 +57,6 @@ public class Test {
 
     public List<FileTree> getFileList(String path) throws IOException {
         List<FileTree> trees = new ArrayList<>();
-        initFtpClient();
         FTPFile[] list = ftpClient.listFiles(path);
         if (null != list) {
             for (FTPFile file : list) {
@@ -70,6 +77,7 @@ public class Test {
         sortList(trees);
         timeFormat(trees);
         return trees;
+
     }
 
     public String sizeShow(Long size) {
@@ -128,8 +136,7 @@ public class Test {
             ftpClient.changeWorkingDirectory(pathName.substring(0, pathName.lastIndexOf("\\")));
             ftpClient.removeDirectory(pathName);
         } catch (IOException e) {
-            LOGGER.info("删除文件夹失败",e);
-            e.printStackTrace();
+            LOGGER.info("删除文件夹失败", e);
             return "删除文件夹" + pathName + "失败：" + e;
         }
         return "true";
@@ -149,8 +156,6 @@ public class Test {
 
     public boolean downloadFile(String remoteFileName, String localDirs, String remotePath) throws IOException {
         initFtpClient();
-        ftpClient.setFileType(FTP.BINARY_FILE_TYPE);
-        ftpClient.enterLocalPassiveMode();
         String strFilePath = localDirs + "\\" + remoteFileName;
         BufferedOutputStream outStream = null;
         boolean success = false;
@@ -159,15 +164,12 @@ public class Test {
             outStream = new BufferedOutputStream(new FileOutputStream(strFilePath));
             success = ftpClient.retrieveFile(remoteFileName, outStream);
         } catch (Exception e) {
-            e.printStackTrace();
+            LOGGER.info("下载异常", e);
+            return false;
         } finally {
             if (null != outStream) {
-                try {
-                    outStream.flush();
-                    outStream.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+                outStream.flush();
+                outStream.close();
             }
         }
         return success;
@@ -189,7 +191,7 @@ public class Test {
                 }
             }
         } catch (IOException e) {
-            LOGGER.info("下载文件夹失败",e);
+            LOGGER.info("下载文件夹失败", e);
             return false;
         }
         return true;
@@ -215,7 +217,7 @@ public class Test {
                 }
             }
         } catch (IOException e) {
-            LOGGER.info("复制文件夹失败",e);
+            LOGGER.info("复制文件失败", e);
             return false;
         }
         return true;
@@ -226,8 +228,6 @@ public class Test {
         if (files.length >= 100) {
             return false;
         } else {
-            ftpClient.setFileType(FTP.BINARY_FILE_TYPE);
-            ftpClient.enterLocalPassiveMode();
             ByteArrayOutputStream fos = new ByteArrayOutputStream();
             ftpClient.retrieveFile(path + "\\" + fileName, fos);
             ByteArrayInputStream in = new ByteArrayInputStream(fos.toByteArray());
@@ -239,27 +239,29 @@ public class Test {
     }
 
 
-    public boolean uploadFile(MultipartFile[] files, String pathname) throws IOException {
+    public JsonResult uploadFile(MultipartFile[] files, String pathname) throws IOException {
         InputStream is;
         FTPFile[] ftpFiles = ftpClient.listFiles(pathname);
         if (ftpFiles.length + files.length >= 100) {
-            return false;
+            return new JsonResult(false, "文件数已满");
         }
-        try {
-            for (MultipartFile file : files) {
+        for (MultipartFile file : files) {
+            try {
+                if (file.isEmpty()) {
+                    return new JsonResult(false, "上传文件为空");
+                }
                 is = file.getInputStream();
                 String fileName = file.getOriginalFilename();
-                ftpClient.storeFile(pathname+"\\"+fileName, is);
+                ftpClient.storeFile(pathname + "\\" + fileName, is);
                 is.close();
+            } catch (Exception e) {
+                LOGGER.error("error", e);
+                return new JsonResult(false, "文件" + file.getOriginalFilename());
             }
-        } catch (Exception e) {
-            e.printStackTrace();
-            return false;
-        } finally {
-            ftpClient.logout();
-            ftpClient.disconnect();
         }
-        return true;
+        ftpClient.logout();
+        ftpClient.disconnect();
+        return new JsonResult(true, "上传成功");
     }
 
     public boolean addDir(String path, String fileName) throws IOException {
@@ -292,8 +294,8 @@ public class Test {
                     return true;
                 }
             }
-        }catch (Exception e){
-            e.printStackTrace();
+        } catch (Exception e) {
+            LOGGER.info("error", e);
             return false;
         }
     }
@@ -306,7 +308,7 @@ public class Test {
         ftpClient.disconnect();
     }
 
-    public void moveFile(String oldPath, String newPath) throws IOException {
+    public void moveFile(String oldPath, String newPath) {
         if (dirCopy(oldPath, newPath)) {
             removeDirectoryALLFile(oldPath);
         }

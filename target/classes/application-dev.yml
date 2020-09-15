@@ -18,6 +18,10 @@ spring:
     host: 172.16.6.82
     port: 6379
     password: 123456
+  servlet:
+    multipart:
+      max-request-size: 10000MB
+      max-file-size: 100000MB
 #  thymeleaf:
 #    cache: false
 #logging:
@@ -47,3 +51,6 @@ mqtt1:
   timeOut: 3000
 ftp:
   host: 172.16.6.70
+logging:
+  file:
+    name: logs/lab.log

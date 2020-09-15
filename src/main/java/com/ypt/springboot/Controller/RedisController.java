@@ -1,7 +1,9 @@
 package com.ypt.springboot.Controller;
 
 import com.alibaba.fastjson.JSONObject;
+import com.ypt.springboot.Config.JsonResult;
 import com.ypt.springboot.bean.User;
+import com.ypt.springboot.ftpTest.FileTree;
 import com.ypt.springboot.ftpTest.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,16 +16,13 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
-import java.io.BufferedInputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.net.URLEncoder;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 @RequestMapping(value = "/redis")
@@ -32,6 +31,8 @@ public class RedisController {
     private static final Logger LOGGER = LoggerFactory.getLogger(RedisController.class);
     @Autowired
     RedisTemplate redisTemplate;
+    @Resource
+    Test t;
 
     @GetMapping(value = "/setSession")
     public String session(HttpSession session) {
@@ -105,71 +106,29 @@ public class RedisController {
         return user;
     }
 
-    @RequestMapping(value = "/download", method = RequestMethod.POST)
-    public String downloadFile(HttpServletRequest request, HttpServletResponse response, @RequestParam String path) throws IOException {
-        String fileName = path.substring(path.lastIndexOf("/")+1);
-        //设置文件路径
-//        File file = new File("d:/2.txt");
-        //File file = new File(realPath , fileName);
-        fileName = URLEncoder.encode(fileName, "UTF-8");
-        response.setCharacterEncoding("UTF-8");
-        response.setContentType("application/x-download");// 设置强制下载不打开
-        response.addHeader("Content-Disposition", "attachment;fileName=" + fileName);// 设置文件名
-        Test t = new Test();
-        t.initFtpClient();
-        t.ftpClient.changeWorkingDirectory(path);
-        InputStream is = null;
-        BufferedInputStream bis = null;
-        try {
-            is = t.ftpClient.retrieveFileStream("2");
-            bis = new BufferedInputStream(is);
-            OutputStream out = response.getOutputStream();
-            byte[] buf = new byte[1024];
-            int len = 0;
-            while ((len = bis.read(buf)) > 0) {
-                out.write(buf, 0, len);
-            }
-            out.flush();
-            out.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            if (bis != null) {
-                try {
-                    bis.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                    return "false";
-                }
-            }
-            if (is != null) {
-                try {
-                    is.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                    return "false";
-                }
-            }
-        }
-        t.ftpClient.disconnect();
-        return "true";
-    }
-
     @PostMapping(value = "/uploadFile")
-    public JSONObject uploadFile(@RequestParam("fileName") MultipartFile[] files){
-        JSONObject jsonString = new JSONObject();
-        Test t = new Test();
+    public JsonResult uploadFile(@RequestParam(value = "fileName", required = false) MultipartFile[] files) throws IOException {
         t.initFtpClient();
         String pathname = "\\1\\111";
+        JsonResult msg = t.uploadFile(files,pathname);
+        return msg;
+    }
+
+    @PostMapping("/fileList")
+    public JsonResult fileList(@RequestParam(value = "path",required = false) String path) throws IOException {
+        t.initFtpClient();
         try {
-            t.uploadFile(files,pathname);
+            if (null == path){
+                path = "\\";
+            }
+            List<FileTree> list =  t.getFileList(path);
+            return new JsonResult(true,list);
         } catch (IOException e) {
-            e.printStackTrace();
-            jsonString.put("msg",false);
-            return jsonString;
+            LOGGER.info("error",e);
+            return new JsonResult(false,"error");
+        }finally {
+            t.ftpClient.disconnect();
         }
-        jsonString.put("msg",true);
-        return jsonString;
     }
 
     //用Element方式
