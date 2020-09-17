@@ -2,9 +2,17 @@ package com.ypt.springboot.Controller;
 
 import com.alibaba.fastjson.JSONObject;
 import com.ypt.springboot.Config.JsonResult;
+import com.ypt.springboot.Mapper.UserMapper;
 import com.ypt.springboot.bean.User;
 import com.ypt.springboot.ftpTest.FileTree;
 import com.ypt.springboot.ftpTest.Test;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.HorizontalAlignment;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.xssf.usermodel.XSSFCell;
+import org.apache.poi.xssf.usermodel.XSSFCellStyle;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,10 +26,16 @@ import org.w3c.dom.NodeList;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import java.io.IOException;
+import java.io.OutputStream;
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -31,6 +45,8 @@ public class RedisController {
     private static final Logger LOGGER = LoggerFactory.getLogger(RedisController.class);
     @Autowired
     RedisTemplate redisTemplate;
+    @Autowired
+    UserMapper userMapper;
     @Resource
     Test t;
 
@@ -109,25 +125,75 @@ public class RedisController {
     @PostMapping(value = "/uploadFile")
     public JsonResult uploadFile(@RequestParam(value = "fileName", required = false) MultipartFile[] files) throws IOException {
         t.initFtpClient();
-        String pathname = "\\1\\111";
-        JsonResult msg = t.uploadFile(files,pathname);
+        String pathname = "/1/111";
+        JsonResult msg = t.uploadFile(files, pathname);
         return msg;
     }
 
     @PostMapping("/fileList")
-    public JsonResult fileList(@RequestParam(value = "path",required = false) String path) throws IOException {
+    public JsonResult fileList(@RequestParam(value = "path", required = false) String path) throws IOException {
         t.initFtpClient();
         try {
-            if (null == path){
-                path = "\\";
+            if (null == path) {
+                path = "/";
             }
-            List<FileTree> list =  t.getFileList(path);
-            return new JsonResult(true,list);
+            List<FileTree> list = t.getFileList(path);
+            return new JsonResult(true, list);
         } catch (IOException e) {
-            LOGGER.info("error",e);
-            return new JsonResult(false,"error");
-        }finally {
+            LOGGER.info("error", e);
+            return new JsonResult(false, "error");
+        } finally {
             t.ftpClient.disconnect();
+        }
+    }
+
+    @PostMapping("/export")
+    public void export(HttpServletResponse response) throws IOException {
+        List<User> userList = userMapper.findAll();
+        XSSFWorkbook wb = new XSSFWorkbook();
+        XSSFSheet sheet = wb.createSheet();
+        Row row = null;
+        XSSFCellStyle style = wb.createCellStyle();
+        style.setAlignment(HorizontalAlignment.CENTER);
+        Cell cell = null;
+        int rowNum = userList.size() + 1;
+        int colNum = 5;
+        String[][] list = new String[rowNum][colNum];
+        for (int i = 0; i < userList.size(); i++) {
+            String[] data = list[i];
+            if (i == 0) {
+                data[0] = "ID";
+                data[1] = "姓名";
+                data[2] = "生日";
+                data[3] = "性别";
+                data[4] = "地址";
+            } else {
+                User u = userList.get(i - 1);
+                data[0] = u.getId().toString();
+                data[1] = u.getUsername();
+                data[2] = u.getBirthday().toString();
+                data[3] = u.getSex();
+                data[4] = u.getAddress();
+            }
+        }
+        for (int i = 0; i < rowNum; i++) {
+            row = sheet.createRow(i);
+            for (int j = 0; j < 5; j++) {
+                cell = row.createCell(j);
+                cell.setCellValue(list[i][j]);
+                cell.setCellStyle(style);
+            }
+        }
+        OutputStream out = null;
+        String fileName = "信息表";
+        fileName = URLEncoder.encode(fileName, "UTF-8");
+        response.setCharacterEncoding("UTF-8");
+        response.setContentType("application/x-download");
+        response.addHeader("Content-Disposition", "attachment;filename=" + fileName + ".xlsx");
+        out = response.getOutputStream();
+        wb.write(out);
+        if (null != out) {
+            out.close();
         }
     }
 
@@ -160,20 +226,21 @@ public class RedisController {
         }
     }
 
-    public static void main(String[] args) {
-        //1.创建DocumentBuilderFactory对象
-        DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-        //2.创建DocumentBuilder对象
-        try {
-            DocumentBuilder builder = factory.newDocumentBuilder();
-            Document d = builder.parse("src/main/resources/demo.xml");
-            NodeList sList = d.getElementsByTagName("student");
-            element(sList);
-//            node(sList);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
+    //解析xml
+//    public static void main(String[] args) {
+//        //1.创建DocumentBuilderFactory对象
+//        DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+//        //2.创建DocumentBuilder对象
+//        try {
+//            DocumentBuilder builder = factory.newDocumentBuilder();
+//            Document d = builder.parse("src/main/resources/demo.xml");
+//            NodeList sList = d.getElementsByTagName("student");
+//            element(sList);
+////            node(sList);
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//    }
 
 
 }

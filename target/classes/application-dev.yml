@@ -50,7 +50,10 @@ mqtt1:
   password: public
   timeOut: 3000
 ftp:
-  host: 172.16.6.70
+  host: 172.16.6.44
+  port: 21
+  name: test
+  password: 123456
 logging:
   file:
     name: logs/lab.log
