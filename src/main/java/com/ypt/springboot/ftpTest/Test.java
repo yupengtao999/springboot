@@ -9,25 +9,26 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.*;
-import java.nio.charset.StandardCharsets;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 @Component
 public class Test {
     //ftp服务器地址
     @Value("${ftp.host}")
-    public String hostname;
+    public String hostname="192.168.128.1";
     //ftp服务器端口号默认为21
     @Value("${ftp.port}")
-    public Integer port;
+    public Integer port=21;
     //ftp登录账号
     @Value("${ftp.name}")
-    public String username;
+    public String username="test";
     //ftp登录密码
     @Value("${ftp.password}")
-    public String password;
+    public String password="123456";
 
     public FTPClient ftpClient = null;
 
@@ -58,7 +59,7 @@ public class Test {
     }
 
     public List<FileTree> getFileList(String path) throws IOException {
-//        initFtpClient();
+        initFtpClient();
         List<FileTree> trees = new ArrayList<>();
         FTPFile[] list = ftpClient.listFiles(path);
         if (null != list) {
@@ -307,16 +308,16 @@ public class Test {
 
 
     public static void main(String[] args) throws IOException {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        Test t = new Test();
-        long start = System.currentTimeMillis();
-        List<FileTree> tree = t.getFileList("/");
-        System.out.println(tree);
-        for (FileTree l : tree) {
-            System.out.println(l);
-        }
-        long end = System.currentTimeMillis();
-        System.out.println(end - start);
+//        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+//        Test t = new Test();
+//        long start = System.currentTimeMillis();
+//        List<FileTree> tree = t.getFileList("/");
+//        System.out.println(tree);
+//        for (FileTree l : tree) {
+//            System.out.println(l);
+//        }
+//        long end = System.currentTimeMillis();
+//        System.out.println(end - start);
 
 //        t.removeDirectoryALLFile("\\1\\2");
 //        t.downloadFile("2.txt", "d:", "\\1");
@@ -326,8 +327,32 @@ public class Test {
 //        t.downLoadDirectory("d:", "\\1\\2");
 //        t.fileCopy("2.txt", "\\1", "\\1\\111");
 //        t.updateFileName("\\1", "2.txt", "4.txt");
-//        t.dirCopy("\\1\\2", "\\1\\111");
-        t.moveFile("/1/2", "/1/111");
+//        t.dirCopy("/1/2", "/1/111");
+//        t.moveFile("/1/2", "/1/111");
 //        t.addDir("\\1", "   ");
+        ExecutorService service = Executors.newFixedThreadPool(4);
+        int[] ns = { 1, 4, 9, 16};
+        for (int n:ns){
+            service.submit(new Task(""+n));
+        }
+        service.shutdown();
+    }
+}
+class Task implements Runnable{
+
+    private final String name;
+
+    Task(String name) {
+        this.name = name;
+    }
+
+    @Override
+    public void run() {
+        System.out.println("start task " + name);
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+        }
+        System.out.println("end task " + name);
     }
 }

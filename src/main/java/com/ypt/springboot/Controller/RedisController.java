@@ -30,6 +30,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
@@ -194,6 +195,25 @@ public class RedisController {
         wb.write(out);
         if (null != out) {
             out.close();
+        }
+    }
+
+    @PostMapping("/down")
+    public void downZip(HttpServletResponse response){
+        try {
+            String fileName = "信息表";
+            fileName = URLEncoder.encode(fileName, "UTF-8");
+            response.setCharacterEncoding("UTF-8");
+            response.setContentType("application/x-download");
+            response.addHeader("Content-Disposition", "attachment;filename=" + fileName + ".zip");
+            OutputStream fos = response.getOutputStream();
+            ZipUtils.toZip("D:/新建文件夹",fos,true);
+
+            if (null != fos){
+                fos.close();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
